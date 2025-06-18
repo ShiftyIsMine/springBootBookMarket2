@@ -36,11 +36,17 @@ public class Cart {
         }
         updateGrandTotal();
     }
-//    전체 주문총액을 업데이트하는 메소드
+    //    전체 주문총액을 업데이트하는 메소드
     public void updateGrandTotal() {
         grandTotal = new BigDecimal(0);
         for(CartItem cartItem : cartItems.values()) {
             grandTotal = grandTotal.add(cartItem.getTotalPrice());
         }
+    }
+
+    public void removeCartItem(CartItem item) {
+        String bookId = item.getBook().getBookId();
+        cartItems.remove(bookId);
+        updateGrandTotal();
     }
 }
